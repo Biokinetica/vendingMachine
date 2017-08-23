@@ -21,22 +21,30 @@ public class Machine {
         return false;
         
     }
-    public static String ChooseItemHelper(int choiceCode, int itemStock[]){
-        return null;
-        
+    public static boolean IsOutOfStock(int stock){
+        if(stock == 0){
+                System.out.println("OUT OF STOCK");
+                return true;
+            }
+        else
+            return false;
+    }
+    public static String ChooseItemHelper(int moneyAmount, int itemStock[]){
+        CoinExchange.setCoin(CoinExchange.getCoin() - moneyAmount);
+            itemStock[0] -= 1;
+            String confirmationMessage = "Dispensing " + CoinExchange.getCoin() + " cents in change";
+            System.out.println(confirmationMessage);
+            System.out.println("THANK YOU");
+            return confirmationMessage;
     }
     public static boolean ChooseItem(int choice, int itemStock[]){
         if(choice == 1 && (CoinExchange.getCoin() >= 100)){
             
-            if(itemStock[0] == 0){
-                System.out.println("OUT OF STOCK");
+            if(IsOutOfStock(itemStock[0])){
                 return false;
             }
             
-            CoinExchange.setCoin(CoinExchange.getCoin() - 100);
-            itemStock[0] -= 1;
-            System.out.println("Dispensing " + CoinExchange.getCoin() + " cents in change");
-            System.out.println("THANK YOU");
+            ChooseItemHelper(100,itemStock);
             return true;
         }
         else if(choice == 2 && (CoinExchange.getCoin() >= 50)){
@@ -46,10 +54,7 @@ public class Machine {
                 return false;
             }
             
-            CoinExchange.setCoin(CoinExchange.getCoin() - 50);
-            itemStock[1] -= 1;
-            System.out.println("Dispensing " + CoinExchange.getCoin() + " cents in change");
-            System.out.println("THANK YOU");
+            ChooseItemHelper(50,itemStock);
             return true;
         }
         else if(choice == 3 && (CoinExchange.getCoin() >= 65)){
@@ -58,10 +63,7 @@ public class Machine {
                 System.out.println("OUT OF STOCK");
                 return false;
             }
-            CoinExchange.setCoin(CoinExchange.getCoin() - 65);
-            itemStock[2] -= 1;
-            System.out.println("Dispensing " + CoinExchange.getCoin() + " cents in change");
-            System.out.println("THANK YOU");
+            ChooseItemHelper(65,itemStock);
             return true;
         }
         return false;

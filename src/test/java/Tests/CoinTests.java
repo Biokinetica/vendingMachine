@@ -66,8 +66,7 @@ public class CoinTests {
     @Test
     public void ChooseItemHelperPrintsCorrectly(){
         CoinExchange.setCoin(200);
-        ;
-        assertEquals("Dispensing 100 cents in change",Machine.ChooseItemHelper(1,itemStock));
+        assertEquals("Dispensing 100 cents in change",Machine.ChooseItemHelper(100,itemStock));
     }
     
     }

@@ -49,8 +49,7 @@ public class Machine {
         }
         else if(choice == 2 && (CoinExchange.getCoin() >= 50)){
             
-            if(itemStock[1] == 0){
-                System.out.println("OUT OF STOCK");
+            if(IsOutOfStock(itemStock[1])){
                 return false;
             }
             
@@ -59,8 +58,7 @@ public class Machine {
         }
         else if(choice == 3 && (CoinExchange.getCoin() >= 65)){
             
-            if(itemStock[2] == 0){
-                System.out.println("OUT OF STOCK");
+            if(IsOutOfStock(itemStock[2])){
                 return false;
             }
             ChooseItemHelper(65,itemStock);
@@ -73,7 +71,6 @@ public class Machine {
         boolean Chosen = false;
         int[] itemStock = {10,10,10};
         Scanner read = new Scanner(System.in);
-        //int money = 0;
         
         
         while (!Chosen) {
@@ -87,7 +84,6 @@ public class Machine {
                  CoinExchange.setMoney(Integer.parseInt(read.nextLine()));
                     read.reset();
                     }
-                
                 
                 //We could try to buy at any point!
                 if(CoinExchange.getMoney() == 1 || CoinExchange.getMoney() == 2 || CoinExchange.getMoney() ==3){

@@ -5,8 +5,10 @@
  */
 package Tests;
 
+import app.InsertMoney;
 import app.Machine;
 import java.util.Random;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
@@ -21,9 +23,9 @@ public class CoinTests {
         boolean Chosen;
         int coin;
         int random;
-        int[] item = {10,10,10};
+        int[] itemStock = {10,10,10};
         int[] emptyItem = {0,0,0};
-        public static Machine.UseMoney CoinExchange = new Machine.UseMoney();
+        public static InsertMoney CoinExchange = new InsertMoney();
         @Before
               public void SetUp(){
                   CoinExchange.setCoin(0);
@@ -47,19 +49,25 @@ public class CoinTests {
     @Test
     public void ItemIsChosen(){
         CoinExchange.setCoin(250);
-      assertTrue(Machine.ChooseItem(1,item));
-      assertTrue(Machine.ChooseItem(2,item));
-      assertTrue(Machine.ChooseItem(3,item));
+      assertTrue(Machine.ChooseItem(1,itemStock));
+      assertTrue(Machine.ChooseItem(2,itemStock));
+      assertTrue(Machine.ChooseItem(3,itemStock));
     }
     @Test
     public void WrongItemIsChosen(){
       //Will always choose item between 4-50.
-      assertFalse(Machine.ChooseItem(random,item));
+      assertFalse(Machine.ChooseItem(random,itemStock));
     }
     @Test
     public void OutOfStock(){
         
         assertFalse(Machine.ChooseItem(1,emptyItem));
+    }
+    @Test
+    public void ChooseItemHelperPrintsCorrectly(){
+        CoinExchange.setCoin(200);
+        ;
+        assertEquals("Dispensing 100 cents in change",Machine.ChooseItemHelper(1,itemStock));
     }
     
     }

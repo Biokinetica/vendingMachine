@@ -1,53 +1,13 @@
 package app;
 
-import java.io.BufferedReader;
-import java.io.Console;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.core.IsEqual.equalTo;
-import static org.junit.Assert.assertTrue;
-import org.junit.Test;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import static org.junit.Assert.assertFalse;
-import org.junit.Before;
 
 
 public class Machine {
-    /**
-     * @return 
-     */
-    
-    public static class UseMoney{
-        public static int coin;
-        public static int money;
-        public UseMoney(){
-            UseMoney.coin = 0;
-            UseMoney.money = 0;
-        }
-  
-        public int getCoin() {
-            return UseMoney.coin;
-        }
 
-        public int getMoney() {
-            return UseMoney.money;
-        }
-        public void setCoin(int c){
-            UseMoney.coin = c;
-        }
-        public void setMoney(int m){
-            UseMoney.money = m;
-        }
-    }
-    public static UseMoney CoinExchange = new UseMoney();
+    public static InsertMoney CoinExchange = new InsertMoney();
 
-
-    
-    public static boolean AcceptCoin(int moneyInserted, UseMoney coin){
+    public static boolean AcceptCoin(int moneyInserted, InsertMoney coin){
         
                 if(moneyInserted == 10 || moneyInserted == 25 || moneyInserted == 5){
                     CoinExchange.setCoin(coin.getCoin() + moneyInserted);
@@ -61,7 +21,10 @@ public class Machine {
         return false;
         
     }
-    
+    public static String ChooseItemHelper(int choiceCode, int itemStock[]){
+        return null;
+        
+    }
     public static boolean ChooseItem(int choice, int itemStock[]){
         if(choice == 1 && (CoinExchange.getCoin() >= 100)){
             
